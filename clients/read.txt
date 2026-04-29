@@ -1,0 +1,233 @@
+fetching a user proflie whenever the selected user changes
+useEffect(() => {
+    fetch(`api/users/${userId})
+    .then(res => res.json())
+    .then(data => setUser(data));
+}, [userId])
+
+
+A live cricket score tracker
+
+useEffect(() => {
+   const internal = setInterval(() => {
+    fetchLatesScore();
+   }, 1000)
+}, [])
+
+
+
+TO fix the cleanup function
+A functon you return from your effect, React calls it authmatically
+useEffect(() => {
+   const internal = setInterval(() => {
+    fetchLatesScore();
+   }, 1000)
+   return () => clearInterval(internal);
+}, [])
+
+
+
+
+Online / offlne staus  indiatior
+useEffect(() => {
+  const online = () => setIsOnline(true);
+  const offline = () => setIsOnline(false);
+
+  window.addEventListener('online', onOnline)
+  window.addEventListener('offline', onOffline)
+
+  return () => {
+    window.removeEventListener('online', onOnline)
+  window.removeEventListener('offline', onOffline)
+  }
+
+}, [])
+
+
+
+
+
+
+
+Missing Dependencies
+This the most comon mistake and your effect use your updated data with realling it
+
+
+old
+const [count, setCount] = useState();
+
+useEffect(() => {
+    console.log("Count is", count)
+},[]) count is missing
+
+we are using count inside the effect. ut it's not in the dependency array
+
+React seen an empty array and says "Run this once never again. so the first run count = 0 Efect captures this value and freezes.
+so the user click btn 5 time and count is 5 but inside the efect is still think count as zero so it stuck with a stale snapshot
+and this is called a stale closure.
+
+A classic javascript proble that show up constantly in React. The effect captured count at the time it ran and never updated
+
+The fix issimple 
+include every value your effect uses in the dependency array
+useEffect(() => {
+  console.log("Count is", count)
+}, [count])
+
+
+
+
+
+# This one will crash your app instantly because its wrong
+And it's surprisingle easy to stumle indiatior
+
+const [user, setUser] = useState([]);
+
+useEffect(() => {
+    fetch("/api/users)
+    .then(res => res.json())
+    .then(data => setUsers(data))
+},[users])
+
+
+
+fix- just want to fetch once
+useEffect(() => {
+    fetch("/api/users)
+    .then(res => res.json())
+    .then(data => setUsers(data))
+},[])
+
+
+to search for something
+useEffect(() => {
+    fetch("/api/users/?search${query})
+    .then(res => res.json())
+    .then(data => setUsers(data))
+},[query])
+
+
+
+
+
+# getProfile
+
+# wrong idea
+This one is subtle. because it also causes infinit loops -  but fo a different reason
+function getProfileFie((userId)) {
+  const option = {
+    method: "GET"
+    header: {'Content-Type': 'application/json'}
+  };
+
+
+  useEffect(() => {
+    fetch("/api/users/{userId}", option)
+    .then(res => res.json())
+    .then(data => setUsers(data))
+},[option])
+}
+
+
+
+#right idea
+Fix one - move it outside the component
+
+if it does't depend on props or state - it belongs at module level
+
+const options = {
+    method: "GET"
+    header: {'Content-Type': 'application/json'}
+  };
+
+function getProfileFie((userId)) {
+  useEffect(() => {
+    fetch("/api/users/{userId}", option)
+    .then(res => res.json())
+    .then(data => setUsers(data))
+},[userId])
+}
+
+
+Fix two - move it insie the effect. 
+Create inside the effect - it's not a dependency at all React dep scoped to this effect
+useEffect(() => {
+  const option = {method: "GET}
+
+    fetch("/api/users/${userId}", option)
+    .then(...);
+},[userId])
+
+
+
+
+# Not Handlin Async Correctlty
+You'll hit this the first time you fetch data with useEffect.
+
+
+useEffect( async () => {
+  const res =  await fetch("/api/users);
+  const data = await res.json();
+  setUser(data)
+},[])
+
+And this is a problem, because useEffect  expects th cleanup to be a function or nothing. so when mark it, it return token not  function.
+
+
+To fix
+useEffect(() => {
+  async function fetchUser() {
+    const res =  await fetch("/api/users);
+    const data = await res.json();
+    setUser(data);
+  }
+
+  fetchUser()
+},[])
+
+
+
+One more problem Race condition
+
+User types quickly in a search box. because this is responses don't arrive in order and the might resole after.
+You'd display the wrong results. Latest query Oldest data.
+
+
+Fix - a cancellation flag in the cleanup
+
+useEffect(() => {
+  et isCancelled = false
+  async function fetchResult() {
+    const res =  await fetch("/api/users/?search${query})
+    const data = await res.json();
+
+    if(!isCancelled) {
+      setResults(data);
+    }
+  }
+
+  fetchResult()
+  return () => {isCancelled = true};
+},[query])
+
+
+
+# Overusing useEffect
+
+const [firstName, setFirstName] = useState('');
+const [lastName, setLastName] = useState('');
+
+const [fullName, setFullName] = useState('');
+
+useEffect(() => {
+  setFirstName(`${firstName} ${lastName}`) 
+},[firstName, lastName])
+
+Overusing using useEffect or useState is extra state, extra effect, extra render
+
+
+right idea
+const [firstName, setFirstName] = useState('');
+const [lastName, setLastName] = useState('');
+
+const fullName = `${firstName} ${lastName}`;
