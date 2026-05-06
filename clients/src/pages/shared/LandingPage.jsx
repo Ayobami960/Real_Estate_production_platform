@@ -282,7 +282,7 @@ const fetchCounts = async () => {
                 </div>
 
                 <div>
-                  <h4 className={s.badgeTitle}>Verifiedd Listing</h4>
+                  <h4 className={s.badgeTitle}>Verified Listing</h4>
                   <p className={s.badgeText}>
                     Inspected by our professional team
                   </p>
