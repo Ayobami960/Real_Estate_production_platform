@@ -615,91 +615,91 @@ export const profileStyles = {
 };
 
 export const landingPageStyles = {
-  // Layout
+
   bgMain: "bg-bg-main",
   container: "container px-6 max-w-[1400px] mx-auto",
 
-  // Hero section
+  // ---- Hero section (mobile-first) ----
   heroSection:
-    "fade-in items-center justify-center  hero-section pt-32 pb-16  flex items-center gap-16 overflow-hidden md:flex-col lg:flex-col xl:flex-row max-lg:flex-col max-lg:text-center max-lg:pt-28 max-lg:pb-8 max-lg:px-4 max-lg:gap-8",
+    "fade-in relative overflow-hidden flex flex-col items-center gap-10 text-center px-4 pt-24 pb-12 sm:px-6 sm:pt-28 sm:pb-16 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10 lg:py-24 lg:text-left xl:gap-24",
+
   heroContent:
-    "hero-content flex-1 max-lg:flex max-lg:flex-col max-lg:items-center",
-  badge: "badge bg-primary-light text-primary-dark mb-6 inline-block",
+    "flex w-full flex-col items-center lg:items-start lg:max-w-[560px] lg:flex-1",
+
+  badge:
+    "badge inline-flex items-center gap-2 bg-primary-light text-primary-dark mb-5 sm:mb-6",
+  badgeDot: "h-1.5 w-1.5 rounded-full bg-primary-dark",
+
   heroTitle:
-    "hero-title text-[clamp(2rem,4vw,4.5rem)] mb-6  transition-all duration-300 max-lg:text-[clamp(1.75rem,8vw,2.5rem)] max-lg:leading-tight text-left ",
+    "font-extrabold leading-[1.1] mb-5 text-[clamp(2rem,7vw,3.25rem)] sm:mb-6 lg:text-[clamp(2.5rem,4vw,4.5rem)]",
   textGradient: "text-primary",
+
   heroSubtitle:
-    "hero-subtitle text-[1.125rem] text-text-muted mb-12 max-w-[540px] max-lg:text-base max-lg:mb-10 max-lg:mx-auto   text-left",
+    "text-base text-text-muted mb-8 max-w-[540px] sm:text-lg sm:mb-10",
 
-  // Search form
-  // searchForm:
-  //   "glass search-form p-5 rounded-[2rem] flex items-center gap-4 shadow-[0_20px_40px_rgba(0,0,0,0.08)] max-w-[900px] border border-white/50 relative z-10 max-lg:flex-col max-lg:w-full max-lg:max-w-[500px] max-lg:mx-auto max-lg:gap-2 max-lg:rounded-[1.5rem]",
-  // searchField:
-  //   "search-field flex-[1.2] flex items-center gap-3 py-2 px-3 transition-all duration-300 min-w-[220px] max-lg:w-full max-lg:py-4 max-lg:px-2 max-lg:border-b max-lg:border-[#f1f5f9]",
-  // textPrimary: "text-primary",
-  // flexCol: "flex flex-col flex-1",
-  // labelSmall:
-  //   "text-[0.7rem] font-extrabold text-text-muted uppercase tracking-[0.05em] mb-1",
-  // inputTransparent:
-  //   "border-none bg-transparent outline-none w-full text-base font-semibold text-text-main",
-  // searchDivider:
-  //   "search-divider w-[1px] h-[44px] bg-border-color opacity-60 shrink-0 max-lg:hidden",
-  // searchButton:
-  //   "btn btn-primary search-button h-[64px] min-w-[130px] rounded-[1.25rem] text-base font-bold shadow-[0_12px_24px_rgba(13,148,136,0.25)] flex items-center justify-center gap-2 max-lg:w-full max-lg:h-[56px] max-lg:rounded-2xl max-lg:mt-2",
+  // ---- Search form ----
   searchForm:
-    "flex items-stretch gap-0 bg-white rounded-[20px] p-2 border border-[#e2e8f0] max-w-[860px] max-lg:flex-col max-lg:gap-1",
+    "w-full max-w-[860px] flex flex-col gap-1 rounded-[20px] border border-[#e2e8f0] bg-white p-2 shadow-sm sm:flex-row sm:items-stretch sm:gap-0",
   searchField:
-    "flex-1 flex items-center gap-3 px-5 py-3 rounded-[14px] cursor-text transition-colors duration-150 hover:bg-slate-50 min-w-0 max-lg:hover:bg-transparent",
-  textPrimary: "text-primary",
-  searchFieldIcon:
-    "w-9 h-9 rounded-[10px] bg-[#E1F5EE] flex items-center justify-center shrink-0 text-[#1D9E75]",
-  flexCol: "flex flex-col flex-1 min-w-0",
+    "flex flex-1 min-w-0 cursor-text items-center gap-3 rounded-[14px] px-4 py-3 transition-colors duration-150 hover:bg-slate-50 sm:px-5",
+  textPrimary: "text-primary shrink-0",
+  flexCol: "flex min-w-0 flex-1 flex-col",
   labelSmall:
-    "text-[10px] font-medium text-slate-400 uppercase tracking-[0.07em] mb-0.5",
+    "mb-0.5 text-[10px] font-medium uppercase tracking-[0.07em] text-slate-400 text-left",
   inputTransparent:
-    "border-none bg-transparent outline-none w-full text-sm font-medium text-text-main placeholder:text-slate-400 placeholder:font-normal",
+    "w-full border-none bg-transparent text-sm font-medium text-text-main outline-none placeholder:font-normal placeholder:text-slate-400 text-left",
   searchDivider:
-    "w-px bg-[#e2e8f0] my-3 shrink-0 max-lg:w-full max-lg:h-px max-lg:my-0",
+    "h-px w-full bg-[#e2e8f0] sm:h-auto sm:w-px sm:my-3",
   searchButton:
-    "bg-[#1D9E75] hover:bg-[#0F6E56] cursor-pointer active:scale-[0.97] text-white rounded-[14px] px-7 text-sm font-medium flex items-center gap-2 transition-all duration-150 shrink-0 max-lg:py-3.5 max-lg:justify-center",
+    "flex shrink-0 items-center justify-center gap-2 rounded-[14px] bg-[#1D9E75] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-150 hover:bg-[#0F6E56] active:scale-[0.97] cursor-pointer sm:px-7 sm:py-3",
 
-  // Stats
+
+    // ---- Custom dropdown ----
+  dropdownTrigger:
+    "flex w-full min-w-0 flex-1 items-center justify-between gap-2 border-none bg-transparent text-left cursor-pointer",
+  dropdownValue:
+    "text-sm font-medium text-text-main",
+  chevronIcon:
+    "shrink-0 text-slate-400 transition-transform duration-200",
+
+  dropdownOverlay:
+    "fixed inset-0 z-50 bg-black/40 sm:bg-transparent",
+
+  dropdownPanel:
+    "fixed inset-x-0 bottom-0 z-[60] max-h-[75vh] overflow-y-auto rounded-t-[24px] bg-white p-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-10px_40px_rgba(0,0,0,0.15)] animate-slide-up sm:inset-x-auto sm:bottom-auto sm:w-72 sm:max-h-[320px] sm:rounded-[16px] sm:border sm:border-[#e2e8f0] sm:p-2 sm:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)] sm:animate-none",
+  dropdownHeader:
+    "flex items-center justify-between px-4 py-3 text-sm font-semibold text-text-main sm:hidden",
+  dropdownCloseBtn:
+    "flex h-8 w-8 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 cursor-pointer",
+
+  dropdownList: "flex flex-col gap-0.5 px-1 pb-2 sm:pb-0",
+  dropdownOption:
+    "flex w-full items-center justify-between rounded-[12px] px-4 py-3.5 text-left text-sm font-medium text-text-main transition-colors duration-150 hover:bg-slate-50 cursor-pointer sm:py-2.5",
+  dropdownOptionActive: "bg-primary-light text-primary-dark",
+  // ---- Stats ----
   statsContainer:
-    "stats-container flex gap-[clamp(1rem,3vw,4rem)] mt-16 max-lg:justify-center max-lg:gap-8 max-md:flex-wrap",
-  statItemFlex: "flex-1 max-md:flex-none max-md:shrink-0 max-md:basis-[120px]",
-  statNumber: "text-[clamp(1.5rem,3vw,2rem)] font-extrabold",
-  statLabel:
-    "uppercase text-[0.7rem] text-text-muted font-extrabold tracking-[0.05em]",
+    "mt-12 grid w-full max-w-[420px] grid-cols-3 gap-3 sm:mt-16 sm:max-w-[520px] sm:gap-6 lg:max-w-none lg:flex lg:gap-[clamp(1.5rem,3vw,4rem)]",
+  statItemFlex: "flex flex-col items-center lg:items-start lg:flex-1",
   statItemBorder:
-    "stat-item border-l border-border-color pl-[clamp(1rem,3vw,4rem)] flex-1 max-lg:pl-8 max-md:border-none max-md:pl-0 max-md:flex-none max-md:shrink-0 max-md:basis-[120px]",
+    "flex flex-col items-center border-l border-border-color pl-3 sm:pl-6 lg:flex-1 lg:items-start lg:pl-[clamp(1.5rem,3vw,4rem)]",
+  statNumber: "font-extrabold text-[clamp(1.15rem,4vw,2rem)]",
+  statLabel:
+    "text-center text-[0.6rem] font-extrabold uppercase tracking-[0.05em] text-text-muted sm:text-[0.7rem] lg:text-left",
 
-  // Hero image
-  // heroImageContainer: "hero-image-container flex-1 relative ",
-  // imageWrapper:
-  //   "rounded-[3rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.25)] relative",
-  // heroImage: "w-full h-[600px] object-cover",
-  // verifiedBadge:
-  //   "glass absolute bottom-8 left-8 p-4 rounded-3xl flex items-center gap-4 max-w-[350px]",
-  // badgeIconWrapper: "bg-primary-light p-3 rounded-2xl",
-  // badgeTitle: "text-[0.9375rem] m-0 font-bold",
-  // badgeText: "text-[0.75rem] text-text-muted m-0",
-  // preApproved: "badge bg-primary/10 text-primary text-[0.625rem]",
-  heroImageContainer:
-    "hero-image-container flex-1 relative w-full max-lg:w-full max-lg:max-w-[600px] max-lg:mx-auto",
+  // ---- Hero image ----
+  heroImageContainer: "relative w-full max-w-[600px] lg:max-w-none lg:flex-1",
   imageWrapper:
-    "rounded-[2rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.25)] relative w-full max-sm:rounded-[1.25rem]",
+    "relative w-full overflow-hidden rounded-[1.5rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.25)] sm:rounded-[2rem] sm:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.25)]",
   heroImage:
-    "w-full h-[600px] object-cover max-xl:h-[480px] max-lg:h-[420px] max-md:h-[340px] max-sm:h-[260px]",
+    "h-[260px] w-full object-cover sm:h-[360px] md:h-[420px] lg:h-[480px] xl:h-[600px]",
+
   verifiedBadge:
-    "glass absolute bottom-6 left-6 p-3 rounded-2xl flex items-center gap-3 max-w-[450px] max-sm:bottom-3 max-sm:left-3 max-sm:p-2.5 max-sm:gap-2 max-sm:max-w-[220px]",
-  badgeIconWrapper:
-    "bg-primary-light p-2.5 rounded-xl shrink-0 max-sm:p-2",
-  badgeTitle:
-    "text-[0.9375rem] m-0 font-bold max-sm:text-[0.8rem]",
-  badgeText:
-    "text-[0.75rem] text-text-muted m-0 max-sm:text-[0.65rem] max-sm:hidden",
+    "glass absolute bottom-3 left-3 right-3 flex items-center gap-2.5 rounded-2xl p-2.5 sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-[420px] sm:gap-3 sm:p-3",
+  badgeIconWrapper: "shrink-0 rounded-xl bg-primary-light p-2 sm:p-2.5",
+  badgeTitle: "m-0 text-[0.8rem] font-bold sm:text-[0.9375rem]",
+  badgeText: "m-0 hidden text-[0.75rem] text-text-muted sm:block",
   preApproved:
-    "badge bg-primary/10 text-primary text-[0.625rem] shrink-0 max-sm:hidden",
+    "badge ml-auto shrink-0 bg-primary/10 text-primary text-[0.6rem] sm:text-[0.625rem]",
 
   // Category section
   categorySection: "py-24 bg-bg-alt",
@@ -1238,19 +1238,27 @@ export const navbarStyles = {
   userSection: "flex items-center gap-5",
   avatar: "w-10 h-10 rounded-full border-2 border-primary-light object-cover",
   logoutButton: "btn btn-outline hidden lg:flex py-1.5 px-4 rounded-xl font-semibold text-sm",
-  mobileToggle: "lg:hidden cursor-pointer text-text-main flex",
-  backdrop: (isOpen) => `fixed inset-0 w-full h-full bg-black/40 backdrop-blur-sm z-[2001] transition-all duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`,
-  drawer: (isOpen) => `fixed top-0 -left-[300px] w-[300px] h-full bg-white z-[2002] transition-transform duration-300 shadow-[10px_0_30px_rgba(0,0,0,0.1)] border-r border-border flex flex-col p-6 ${isOpen ? 'translate-x-[300px]' : ''}`,
-  drawerHeader: "flex justify-between items-center mb-10",
-  drawerCloseIcon: "cursor-pointer text-text-main",
-  drawerNavLinks: "flex flex-col gap-6 flex-1 text-lg",
-  drawerUserSection: "mt-auto pt-6 border-t border-border",
-  drawerUserInfo: "flex items-center gap-4 mb-6",
-  drawerAvatar: "w-10 h-10 rounded-full object-cover",
-  drawerUserName: "font-semibold text-[15px]",
-  drawerUserEmail: "text-xs text-text-muted",
-  drawerLogoutButton: "btn btn-primary w-full",
+  mobileToggle: "lg:hidden cursor-pointer text-text-main flex items-center justify-center w-10 h-10 rounded-full bg-white/50 border border-white/30 hover:bg-primary/10 hover:text-primary transition-all duration-300",
+  drawerHeader: "flex justify-between items-center  p-2",
+  drawerCloseIcon: "cursor-pointer text-text-main hover:text-primary transition-colors duration-300",
+
+  // Backdrop behind the dropdown
+  backdrop: (isOpen) => `fixed inset-0 w-full h-full bg-black/40 backdrop-blur-sm z-[1998] transition-all duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`,
+
+  // Dropdown panel that unfurls under the navbar
+  dropdown: (isOpen) => `fixed top-0 left-0 w-full z-[1999] transition-all duration-300 ease-out origin-top ${isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`,
+  dropdownInner: "mt-[64px] lg:mt-[76px] mx-4 bg-white/95 backdrop-blur-md rounded-3xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden",
+  dropdownNavLinks: "flex flex-col p-3 gap-1",
+  dropdownLink: "nav-link text-text-main font-semibold text-[15px] px-4 py-3 rounded-2xl transition-all duration-300 no-underline hover:text-primary hover:bg-primary/10",
+  dropdownDivider: "h-px bg-border mx-3",
+  dropdownUserSection: "flex items-center justify-between p-4",
+  dropdownUserInfo: "flex items-center gap-3",
+  dropdownAvatar: "w-11 h-11 rounded-full object-cover border-2 border-primary-light",
+  dropdownUserName: "font-semibold text-[15px] text-text-main",
+  dropdownUserEmail: "text-xs text-text-muted",
+  dropdownLogoutIcon: "cursor-pointer text-text-main hover:text-primary transition-colors duration-300 w-9 h-9 flex items-center justify-center rounded-full hover:bg-primary/10",
 };
+
 
 export const propertyCardStyles = {
   // Card container
