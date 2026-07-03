@@ -9,7 +9,7 @@ import connectDB from "./config/db.js";
 import router from "./routes/index.js";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // DB
 await connectDB();
