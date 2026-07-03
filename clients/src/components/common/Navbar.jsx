@@ -13,59 +13,53 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   // Build nav links based on auth state and role
-  const navLinks = (
+  const navLinks = (linkClass) => (
     <>
-      {/* Unauthenticated — show public Browse link plus Login/Register */}
       {!user && (
         <>
-          <Link to="/properties" className={s.navLink} onClick={closeMenu}>
+          <Link to="/properties" className={linkClass} onClick={closeMenu}>
             Browse Properties
           </Link>
-          <Link to="/login" className={s.navLink} onClick={closeMenu}>
+          <Link to="/login" className={linkClass} onClick={closeMenu}>
             Login
           </Link>
-          <Link to="/register" className={s.navLink} onClick={closeMenu}>
+          <Link to="/register" className={linkClass} onClick={closeMenu}>
             Register
           </Link>
         </>
       )}
 
-      {/* Buyer */}
       {user?.role === "buyer" && (
         <>
-          <Link to="/" className={s.navLink} onClick={closeMenu}>
+          <Link to="/" className={linkClass} onClick={closeMenu}>
             Home
           </Link>
-          <Link to="/properties" className={s.navLink} onClick={closeMenu}>
+          <Link to="/properties" className={linkClass} onClick={closeMenu}>
             Properties
           </Link>
-          <Link to="/wishlist" className={s.navLink} onClick={closeMenu}>
+          <Link to="/wishlist" className={linkClass} onClick={closeMenu}>
             Wishlist
           </Link>
-          <Link to="/chat-messages" className={s.navLink} onClick={closeMenu}>
+          <Link to="/chat-messages" className={linkClass} onClick={closeMenu}>
             Message
           </Link>
-          <Link to="/contact" className={s.navLink} onClick={closeMenu}>
+          <Link to="/contact" className={linkClass} onClick={closeMenu}>
             Contact
           </Link>
         </>
       )}
 
-      {/* Seller */}
       {user?.role === "seller" && (
-        <Link to="/dashboard" className={s.navLink} onClick={closeMenu}>
+        <Link to="/dashboard" className={linkClass} onClick={closeMenu}>
           Dashboard
         </Link>
       )}
 
-      {/* Admin */}
       {user?.role === "admin" && (
-        <Link to="/admin-dashboard" className={s.navLink} onClick={closeMenu}>
+        <Link to="/admin-dashboard" className={linkClass} onClick={closeMenu}>
           Admin Panel
         </Link>
       )}
-
-
     </>
   );
 
@@ -80,11 +74,9 @@ const Navbar = () => {
             </div>
             {/* Desktop menu */}
             <div className={s.desktopMenu}>
-              {navLinks}
+              {navLinks(s.navLink)}
             </div>
             <div className={s.rightSection}>
-              {/* {right} */}
-
               {user ? (
                 <div className={s.userSection}>
                   <Link to="/profile" className='flex items-center'>
@@ -102,64 +94,59 @@ const Navbar = () => {
                 </div>
               ) : null}
 
-              {/* moblie toogle */}
+              {/* mobile toggle — always the hamburger icon */}
               <div className={s.mobileToggle} onClick={toggleMenu}>
-                {isOpen ? <HiX size={28} /> : <HiMenuAlt3 size={28} />}
+                <HiMenuAlt3 size={22} />
               </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className={s.backdrop} onClick={() => setIsOpen(false)}></div>
+      {/* backdrop */}
+      <div className={s.backdrop(isOpen)} onClick={closeMenu}></div>
 
-      <div className={s.drawer(isOpen)}>
-        <div className={s.drawerHeader}>
-          <Logo />
+      {/* dropdown panel */}
+      <div className={s.dropdown(isOpen)}>
+        <div className={s.dropdownInner}>
 
-          <HiX
-            size={28}
-            onClick={() => setIsOpen(false)}
-            className={s.drawerCloseIcon}
-          />
-        </div>
+          <div className={s.drawerHeader}>
+            <Logo />
 
-        <div className={s.drawerNavLinks}>{navLinks}</div>
-
-        {user && (
-          <div className='flex item-center justify-between'>
-            <div className={s.drawerUserSection}>
-              <div className={s.drawerUserInfo}>
-                <img src={
-                  user.profilePic ||
-                  `https://ui-avatars.com/api/?name=${user.name}&background=0d6e59&color=fff`
-                }
-                  alt="Profile"
-                  className={s.drawerAvatar} />
-              </div>
-            </div>
-
-            <button
-              onClick={logout}
-              className="cursor-pointer"
-            >
-              <HiOutlineLogout size={20} />
-            
-            </button>
+            <HiX
+              size={28}
+              onClick={() => setIsOpen(false)}
+              className={s.drawerCloseIcon}
+            />
           </div>
-        )}
+          <div className={s.dropdownNavLinks}>
+            {navLinks(s.dropdownLink)}
+          </div>
 
-        {user && (
-          <>
-            <div className={s.drawerUserName}>
-              {user.name || ''}
-            </div>
-            <div className={s.drawerUserEmail}>
-              {user.email || ''}
-            </div>
-          </>
-        )}
+          {user && (
+            <>
+              <div className={s.dropdownDivider}></div>
+              <div className={s.dropdownUserSection}>
+                <div className={s.dropdownUserInfo}>
+                  <img src={
+                    user.profilePic ||
+                    `https://ui-avatars.com/api/?name=${user.name}&background=0d6e59&color=fff`
+                  }
+                    alt="Profile"
+                    className={s.dropdownAvatar} />
+                  <div>
+                    <div className={s.dropdownUserName}>{user.name || ''}</div>
+                    <div className={s.dropdownUserEmail}>{user.email || ''}</div>
+                  </div>
+                </div>
 
+                <button onClick={logout} className={s.dropdownLogoutIcon}>
+                  <HiOutlineLogout size={20} />
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </>
   );
