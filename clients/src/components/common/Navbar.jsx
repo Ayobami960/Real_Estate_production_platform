@@ -3,7 +3,7 @@ import { navbarStyles as s } from "../../assets/dummyStyles"
 import Logo from './Logo'
 import { useAuth } from '../../context/AuthContent'
 import { Link } from 'react-router-dom'
-import { HiMenuAlt3, HiX } from 'react-icons/hi'
+import { HiMenuAlt3, HiOutlineLogout, HiX } from 'react-icons/hi'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -127,15 +127,25 @@ const Navbar = () => {
         <div className={s.drawerNavLinks}>{navLinks}</div>
 
         {user && (
-          <div className={s.drawerUserSection}>
-            <div className={s.drawerUserInfo}>
-              <img src={
-                user.profilePic ||
-                `https://ui-avatars.com/api/?name=${user.name}&background=0d6e59&color=fff`
-              }
-                alt="Profile"
-                className={s.drawerAvatar} />
+          <div className='flex item-center justify-between'>
+            <div className={s.drawerUserSection}>
+              <div className={s.drawerUserInfo}>
+                <img src={
+                  user.profilePic ||
+                  `https://ui-avatars.com/api/?name=${user.name}&background=0d6e59&color=fff`
+                }
+                  alt="Profile"
+                  className={s.drawerAvatar} />
+              </div>
             </div>
+
+            <button
+              onClick={logout}
+              className="cursor-pointer"
+            >
+              <HiOutlineLogout size={20} />
+            
+            </button>
           </div>
         )}
 
