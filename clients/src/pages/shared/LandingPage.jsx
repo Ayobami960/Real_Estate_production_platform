@@ -10,6 +10,7 @@ import { API_URL } from '../../config'
 import banner from "../../assets/bannerimage.png"
 import PropertyCard from '../../components/common/PropertyCard'
 import logo from "../../assets/hexagonlogo1.png"
+import PropertyTypeSelect from '../../components/PropertyTypeSelect'
 
 const LandingPage = () => {
 
@@ -55,26 +56,7 @@ const LandingPage = () => {
     }
   };
 
-  // to remove a wishlist
-  // const handleToggleWishlist = async (propertyId) => {
-  //   try {
-  //     const isWishlisted = wishlistedIds.includes(propertyId);
-  //     if (isWishlisted) {
-  //       await axios.delete(`${API_URL}/wishlist/${propertyId}`, {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       });
-  //       setWishlistedIds((prev) => prev.filter((id) => id !== propertyId));
-  //     } else {
-  //       await axios.post(`${API_URL}/wishlist/${propertyId}`, {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       }) // to add
-
-  //       setWishlistedIds((prev) => [...prev, propertyId]);
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to fetch wishlist", error)
-  //   }
-  // };
+  
 
   const handleToggleWishlist = async (propertyId) => {
   try {
@@ -207,48 +189,29 @@ const fetchCounts = async () => {
               Experience the most advanced real estate search platform. Discover verified listings, connect with top agents, and find a place you'll love.
             </p>
 
-            <form onSubmit={handleSearch} className={s.searchForm}>
-              <div className={s.searchField}>
-                <div className={s.textPrimary}>
-                  <HiLocationMarker className='' size={26} />
-                </div>
+              <form onSubmit={handleSearch} className={s.searchForm}>
+                <div className={s.searchField}>
+                  <div className={s.textPrimary}>
+                    <HiLocationMarker className='' size={26} />
+                  </div>
 
-                <div className={s.flexCol}>
-                  <label className={s.labelSmall}>Location</label>
-                  <input
-                    type="text"
-                    placeholder='Where are you looking'
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className={s.inputTransparent}
-                  />
+                  <div className={s.flexCol}>
+                    <label className={s.labelSmall}>Location</label>
+                    <input
+                      type="text"
+                      placeholder='Where are you looking'
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className={s.inputTransparent}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className={s.searchDivider}></div>
-              <div className={s.searchField}>
-                <div className={s.textPrimary}>
-                  <HiHome size={26} />
-                </div>
-                <div className={s.flexCol}>
-                  <label className={s.labelSmall}>Property Type</label>
-                  <select
-                    value={propertyType}
-                    onChange={(e) => setPropertyType(e.target.value)}
-                    className={`${s.inputTransparent} cursor-pointer`}
-                  >
-                    <option value="Select Type">Select Type</option>
-                    <option value="flat">Flat/Apartment</option>
-                    <option value="villa">Villa/House</option>
-                    <option value="penthouse">Penthouse</option>
-                    <option value="commercial">Commercial</option>
-
-                  </select>
-                </div>
-              </div>
-              <button type='submit' className={s.searchButton}>
-                <HiSearch size={22} /> Search
-              </button>
-            </form>
+                <div className={s.searchDivider}></div>
+                <PropertyTypeSelect value={propertyType} onChange={setPropertyType} s={s} />
+                <button type='submit' className={s.searchButton}>
+                  <HiSearch size={22} /> Search
+                </button>
+              </form>
 
             {/* stats */}
 
