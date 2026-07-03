@@ -96,14 +96,8 @@ export const AuthProvider = ({ children }) => {
 
   // Logout
   const logout = () => {
-    setToken(null);
-    setUser(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("user");
-    // FIX: was navigate("login") — missing leading slash
-    navigate("/login");
+    localStorage.removeItem('token');
+    window.location.href = '/login'; // full reload wipes state — no need to setUser(null) first
   };
 
   // Refresh user from server
