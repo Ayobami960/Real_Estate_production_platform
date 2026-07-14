@@ -57,8 +57,6 @@ This project is a full-stack Real Estate Management application with separate fr
    - `npm run dev` or `npm start`
 
 ## Notes
-https://cybr.com/beginner-archives/set-up-the-owasp-juice-shop-on-kali-with-docker-quickest-method/
-
 
 - Configure backend API URL, database connection, and auth secrets as environment variables.
 - The frontend reads stored user information on login to decide dashboard navigation.
